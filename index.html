@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Tailwind CSS Tutorial</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/style.css">
-  <style>
-    body {
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Tailwind CSS Tutorial</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@tailwindcss/typography@0.2.0/dist/typography.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+    <style>
+      body {
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -62,603 +63,529 @@
     #path-animation-container {
       offset-path: path("M20,100 C40,20 80,20 100,100 S160,180 180,100");
     }
-  </style>
-</head>
-
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
-
-  <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-      <div class="flex items-center justify-between h-16">
-        <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Interactive Tailwind CSS Tutorial</h1>
-        <button id="dark-mode-toggle"
-          class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-          <svg id="theme-toggle-dark-icon" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-          </svg>
-          <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-              fill-rule="evenodd" clip-rule="evenodd"></path>
-          </svg>
-        </button>
-      </div>
-      <div class="flex items-center justify-center">
-        <nav class="hidden md:flex items-center space-x-1" id="desktop-nav">
-          <button data-tab="intro"
-            class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors active">Introduction</button>
-          <button data-tab="concepts"
-            class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Core
-            Concepts</button>
-          <button data-tab="layout"
-            class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Layout</button>
-          <button data-tab="playground"
-            class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Component
-            Playground</button>
-          <button data-tab="effects"
-            class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Effects
-            & Animations</button>
-          <button data-tab="other-classes"
-            class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Other
-            Classes</button>
-        </nav>
-        <div class="md:hidden w-full pt-2">
-          <select id="mobile-nav"
-            class="w-full rounded-md border-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:text-white shadow-sm focus:border-sky-500 focus:ring-sky-500">
-            <option value="intro">Introduction</option>
-            <option value="concepts">Core Concepts</option>
-            <option value="layout">Layout</option>
-            <option value="playground">Component Playground</option>
-            <option value="effects">Effects & Animations</option>
-            <option value="other-classes">Other Classes</option>
-          </select>
+    </style>
+  </head>
+  <body>
+    <div id="app-wrapper" class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
+      <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <div class="flex items-center justify-between h-16">
+            <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Interactive Tailwind CSS Tutorial</h1>
+            <button id="dark-mode-toggle" class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+              <svg id="theme-toggle-dark-icon" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+              </svg>
+              <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="flex items-center justify-center">
+            <nav class="hidden md:flex items-center space-x-1" id="desktop-nav">
+              <button data-tab="intro" class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors active">Introduction</button>
+              <button data-tab="concepts" class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Core
+              Concepts</button>
+              <button data-tab="layout" class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Layout</button>
+              <button data-tab="playground" class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Component
+              Playground</button>
+              <button data-tab="effects" class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Effects
+              & Animations</button>
+              <button data-tab="other-classes" class="tab-button px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Other
+              Classes</button>
+            </nav>
+            <div class="md:hidden w-full pt-2">
+              <select id="mobile-nav" class="w-full rounded-md border-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:text-white shadow-sm focus:border-sky-500 focus:ring-sky-500">
+                <option value="intro">Introduction</option>
+                <option value="concepts">Core Concepts</option>
+                <option value="layout">Layout</option>
+                <option value="playground">Component Playground</option>
+                <option value="effects">Effects & Animations</option>
+                <option value="other-classes">Other Classes</option>
+              </select>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-
-    <section id="intro" class="tab-content active">
-      <article class="prose dark:prose-invert mx-auto max-w-3xl">
-        <h2>What is Tailwind CSS?</h2>
-        <p>Tailwind CSS is a <strong>utility-first CSS framework</strong> for rapidly building custom user interfaces.
-          Unlike frameworks like Bootstrap that provide pre-built components (buttons, cards, etc.), Tailwind provides
-          low-level utility classes that let you build completely custom designs without ever leaving your HTML.</p>
-        <h3>The Utility-First Philosophy</h3>
-        <p>The core idea is to use small, single-purpose classes like <code>flex</code>, <code>pt-4</code>
-          (padding-top), and <code>text-center</code> directly in your markup. This has several advantages:</p>
-        <ul>
-          <li><strong>No more inventing class names.</strong> Stop agonizing over naming things like
-            <code>.user-profile-avatar-wrapper</code>.</li>
-          <li><strong>Your CSS stops growing.</strong> With traditional CSS, your stylesheets grow with every new
-            feature. With Tailwind, you reuse existing utilities, so your CSS bundle stays tiny.</li>
-          <li><strong>Making changes is safer.</strong> Since classes are local to the HTML, you can change styles
-            without worrying about breaking something else on your site.</li>
-        </ul>
-        <h3>A Framework for Design Systems</h3>
-        <p>At its heart, Tailwind is a powerful engine for creating and enforcing a design system. All the colors,
-          spacing, fonts, and shadows are defined in a central configuration file (<code>tailwind.config.js</code>).
-          This ensures visual consistency across your entire application by design, making it easier for teams to build
-          cohesive UIs.</p>
-      </article>
-    </section>
-
-    <section id="concepts" class="tab-content">
-      <article class="prose dark:prose-invert mx-auto max-w-3xl">
-        <h2>How It Works: The Engine Room</h2>
-        <p>Tailwind isn't just a static CSS file. It's a sophisticated tool that processes your code and generates the
-          exact styles you need. This process is powered by two key technologies: PostCSS and the Just-in-Time (JIT)
-          compiler.</p>
-        <h3>The Role of PostCSS</h3>
-        <p>Tailwind operates as a <strong>PostCSS plugin</strong>. PostCSS is a tool for transforming CSS with
-          JavaScript. When you run your build process, PostCSS scans your files, finds the Tailwind classes you've used,
-          and replaces them with actual CSS. This also allows Tailwind to integrate with other helpful tools like
-          <code>autoprefixer</code>, which adds vendor prefixes for maximum browser compatibility.</p>
-        <h3>The Just-in-Time (JIT) Compiler</h3>
-        <p>The JIT compiler revolutionized Tailwind's performance and capabilities. Instead of generating a massive CSS
-          file with every possible utility class beforehand, the JIT engine generates styles <strong>on-demand</strong>
-          as it scans your files.</p>
-      </article>
-      <div class="mt-12">
-        <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">JIT Engine Performance Advantage
-        </h3>
-        <div class="chart-container">
-          <canvas id="jitChart"></canvas>
-        </div>
-        <p class="text-center text-sm text-slate-600 dark:text-slate-400 mt-2">The JIT engine drastically reduces build
-          times and final bundle sizes by generating only the CSS your project actually uses.</p>
-      </div>
-    </section>
-
-    <section id="layout" class="tab-content">
-      <div class="space-y-12">
-        <div>
-          <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Sizing Playground</h3>
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-              <div class="md:col-span-1 space-y-4">
+      </header>
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <section id="intro" class="tab-content active">
+          <article class="prose dark:prose-invert mx-auto max-w-3xl">
+            <h2>What is Tailwind CSS?</h2>
+            <p>Tailwind CSS is a
+              <strong>utility-first CSS framework</strong>
+              for rapidly building custom user interfaces.
+            Unlike frameworks like Bootstrap that provide pre-built components (buttons, cards, etc.), Tailwind provides
+            low-level utility classes that let you build completely custom designs without ever leaving your HTML.</p>
+            <h3>The Utility-First Philosophy</h3>
+            <p>The core idea is to use small, single-purpose classes like
+              <code>flex</code>,
+              <code>pt-4</code>
+              (padding-top), and
+              <code>text-center</code>
+              directly in your markup. This has several advantages:</p>
+            <ul>
+              <li><strong>No more inventing class names.</strong>
+                Stop agonizing over naming things like
+                <code>.user-profile-avatar-wrapper</code>.</li>
+              <li><strong>Your CSS stops growing.</strong>
+                With traditional CSS, your stylesheets grow with every new
+              feature. With Tailwind, you reuse existing utilities, so your CSS bundle stays tiny.</li>
+              <li><strong>Making changes is safer.</strong>
+                Since classes are local to the HTML, you can change styles
+              without worrying about breaking something else on your site.</li>
+            </ul>
+            <h3>A Framework for Design Systems</h3>
+            <p>At its heart, Tailwind is a powerful engine for creating and enforcing a design system. All the colors,
+            spacing, fonts, and shadows are defined in a central configuration file (<code>tailwind.config.js</code>).
+            This ensures visual consistency across your entire application by design, making it easier for teams to
+            build cohesive UIs.</p>
+          </article>
+        </section>
+        <section id="concepts" class="tab-content">
+          <article class="prose dark:prose-invert mx-auto max-w-3xl">
+            <h2>How It Works: The Engine Room</h2>
+            <p>Tailwind isn't just a static CSS file. It's a sophisticated tool that processes your code and generates the
+            exact styles you need. This process is powered by two key technologies: PostCSS and the Just-in-Time (JIT)
+            compiler.</p>
+            <h3>The Role of PostCSS</h3>
+            <p>Tailwind operates as a
+              <strong>PostCSS plugin</strong>. PostCSS is a tool for transforming CSS with
+            JavaScript. When you run your build process, PostCSS scans your files, finds the Tailwind classes you've
+            used, and replaces them with actual CSS. This also allows Tailwind to integrate with other helpful tools
+            like
+              <code>autoprefixer</code>, which adds vendor prefixes for maximum browser compatibility.</p>
+            <h3>The Just-in-Time (JIT) Compiler</h3>
+            <p>The JIT compiler revolutionized Tailwind's performance and capabilities. Instead of generating a massive
+            CSS file with every possible utility class beforehand, the JIT engine generates styles
+              <strong>on-demand</strong>
+              as it scans your files.</p>
+          </article>
+          <div class="mt-12">
+            <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">JIT Engine Performance
+            Advantage</h3>
+            <div class="chart-container">
+              <canvas id="jitChart"></canvas>
+            </div>
+            <p class="text-center text-sm text-slate-600 dark:text-slate-400 mt-2">The JIT engine drastically reduces
+            build times and final bundle sizes by generating only the CSS your project actually uses.</p>
+          </div>
+        </section>
+        <section id="layout" class="tab-content">
+          <div class="space-y-12">
+            <div>
+              <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Sizing Playground</h3>
+              <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                  <div class="md:col-span-1 space-y-4">
+                    <div>
+                      <label for="width-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Width:
+                        <span id="width-value">w-48</span></label>
+                      <input id="width-control" type="range" min="8" max="96" value="48" step="4" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700">
+                    </div>
+                    <div>
+                      <label for="height-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Height:
+                        <span id="height-value">h-32</span></label>
+                      <input id="height-control" type="range" min="8" max="64" value="32" step="4" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700">
+                    </div>
+                    <div>
+                      <label for="size-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Size
+                      (Width & Height):
+                        <span id="size-value">size-auto</span></label>
+                      <select id="size-control" class="mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                        <option value="size-auto" selected>auto</option>
+                        <option value="size-24">24 (6rem)</option>
+                        <option value="size-32">32 (8rem)</option>
+                        <option value="size-48">48 (12rem)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="md:col-span-2 flex items-center justify-center bg-slate-100 dark:bg-slate-900 rounded-lg min-h-[20rem]">
+                    <div id="sizing-viz" class="bg-sky-500 rounded-lg flex items-center justify-center transition-all duration-200 w-48 h-32">
+                      <p id="sizing-output" class="text-white font-mono text-sm p-2 text-center"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Centering Playground</h3>
+              <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+                <div class="flex justify-center gap-4 mb-6">
+                  <button data-method="mx-auto" class="centering-btn control-btn px-3 py-2 text-sm rounded-md bg-slate-200 dark:bg-slate-700 active">Horizontal
+                  (mx-auto)</button>
+                  <button data-method="absolute" class="centering-btn control-btn px-3 py-2 text-sm rounded-md bg-slate-200 dark:bg-slate-700">Absolute
+                  Center</button>
+                </div>
+                <div id="centering-viz-container" class="relative h-64 bg-slate-100 dark:bg-slate-900 rounded-lg">
+                  <div id="centering-viz" class="w-32 h-32 bg-sky-500 rounded-lg flex items-center justify-center text-white font-bold mx-auto">
+                    Centered
+                  </div>
+                </div>
+                <div class="mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
+                  <p id="centering-output" class="whitespace-nowrap"></p>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Interactive Box Model</h3>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+                  <div id="box-model-controls" class="flex flex-wrap gap-4 justify-center mb-6">
+                    <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" data-class="p-8" class="box-model-toggle rounded text-sky-600 focus:ring-sky-500"><span>Padding</span></label>
+                    <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" data-class="border-8" class="box-model-toggle rounded text-sky-600 focus:ring-sky-500"><span>Border</span></label>
+                  </div>
+                  <div id="box-model-viz" class="w-48 h-48 bg-sky-500/20 border-sky-500 mx-auto transition-all duration-300 relative flex items-center justify-center">
+                    <div id="box-model-content" class="bg-sky-500 text-white flex items-center justify-center text-sm font-mono transition-all duration-300">
+                      Content
+                    </div>
+                  </div>
+                  <div id="box-model-output" class="text-center font-mono text-sm mt-4 text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 rounded p-2">
+                  </div>
+                  <p class="text-center text-xs text-slate-500 mt-2">Using
+                    <code>box-border</code>
+                    (Tailwind's default),
+                  padding and borders are included *inside* the element's specified dimensions.</p>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Flexbox Playground</h3>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+                  <div id="flexbox-controls" class="mb-4 space-y-3">
+                    <div>
+                      <p class="text-sm font-medium mb-2">Justify Content (Main Axis)</p>
+                      <div class="flex flex-wrap gap-2">
+                        <button data-group="justify" data-class="justify-start" class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">justify-start</button>
+                        <button data-group="justify" data-class="justify-center" class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">justify-center</button>
+                        <button data-group="justify" data-class="justify-end" class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">justify-end</button>
+                        <button data-group="justify" data-class="justify-between" class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">justify-between</button>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="text-sm font-medium mb-2">Align Items (Cross Axis)</p>
+                      <div class="flex flex-wrap gap-2">
+                        <button data-group="items" data-class="items-start" class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">items-start</button>
+                        <button data-group="items" data-class="items-center" class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">items-center</button>
+                        <button data-group="items" data-class="items-end" class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">items-end</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="flexbox-viz" class="h-40 bg-slate-100 dark:bg-slate-700 rounded p-2 flex justify-start items-start transition-all duration-300">
+                    <div class="w-10 h-10 bg-sky-500 rounded flex items-center justify-center text-white font-bold">1</div>
+                    <div class="w-10 h-16 bg-sky-600 rounded flex items-center justify-center text-white font-bold">2</div>
+                    <div class="w-10 h-12 bg-sky-700 rounded flex items-center justify-center text-white font-bold">3</div>
+                  </div>
+                  <p id="flexbox-output" class="text-center font-mono text-sm mt-4 text-slate-600 dark:text-slate-400">
+                    .flex .justify-start .items-start
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Grid Playground</h3>
+              <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+                <div id="grid-controls" class="mb-4 space-y-3">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <p class="text-sm font-medium mb-2">Columns</p>
+                      <div class="flex flex-wrap gap-2">
+                        <button data-group="cols" data-class="grid-cols-2" class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">2</button>
+                        <button data-group="cols" data-class="grid-cols-3" class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">3</button>
+                        <button data-group="cols" data-class="grid-cols-4" class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">4</button>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="text-sm font-medium mb-2">Gap</p>
+                      <div class="flex flex-wrap gap-2">
+                        <button data-group="gap" data-class="gap-2" class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">2</button>
+                        <button data-group="gap" data-class="gap-4" class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">4</button>
+                        <button data-group="gap" data-class="gap-8" class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">8</button>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="text-sm font-medium mb-2">Item 1 Column Span</p>
+                      <div class="flex flex-wrap gap-2">
+                        <button data-group="span" data-class="col-span-1" class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">1</button>
+                        <button data-group="span" data-class="col-span-2" class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">2</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="grid-viz" class="min-h-[10rem] bg-slate-100 dark:bg-slate-700 rounded p-2 grid grid-cols-3 gap-4 transition-all duration-300">
+                  <div id="grid-item-1" class="h-16 bg-sky-500 rounded flex items-center justify-center text-white font-bold transition-all duration-300 col-span-1">
+                    1
+                  </div>
+                  <div class="h-16 bg-sky-600 rounded flex items-center justify-center text-white font-bold">2</div>
+                  <div class="h-16 bg-sky-700 rounded flex items-center justify-center text-white font-bold">3</div>
+                  <div class="h-16 bg-sky-600 rounded flex items-center justify-center text-white font-bold">4</div>
+                  <div class="h-16 bg-sky-700 rounded flex items-center justify-center text-white font-bold">5</div>
+                </div>
+                <p id="grid-output" class="text-center font-mono text-sm mt-4 text-slate-600 dark:text-slate-400">
+                  Container: .grid .grid-cols-3 .gap-4 | Item 1: .col-span-1
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="playground" class="tab-content">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg space-y-6">
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white">Customize Component</h3>
+              <div class="space-y-4 border-b border-slate-200 dark:border-slate-700 pb-6">
+                <h4 class="text-sm font-medium text-slate-500 dark:text-slate-400">Card Styles</h4>
                 <div>
-                  <label for="width-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Width:
-                    <span id="width-value">w-48</span></label>
-                  <input id="width-control" type="range" min="8" max="96" value="48" step="4"
-                    class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700">
+                  <label for="padding-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Padding</label>
+                  <select id="padding-control" class="card-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                    <option value="p-2">p-2</option>
+                    <option value="p-4">p-4</option>
+                    <option value="p-6" selected>p-6</option>
+                    <option value="p-8">p-8</option>
+                    <option value="p-12">p-12</option>
+                  </select>
                 </div>
                 <div>
-                  <label for="height-control"
-                    class="block text-sm font-medium text-slate-700 dark:text-slate-300">Height: <span
-                      id="height-value">h-32</span></label>
-                  <input id="height-control" type="range" min="8" max="64" value="32" step="4"
-                    class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700">
+                  <label for="bg-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Background
+                  Color</label>
+                  <select id="bg-control" class="card-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                    <option value="bg-white" selected>white</option>
+                    <option value="bg-slate-200">slate-200</option>
+                    <option value="bg-sky-500">sky-500</option>
+                    <option value="bg-indigo-500">indigo-500</option>
+                  </select>
                 </div>
                 <div>
-                  <label for="size-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Size
-                    (Width & Height): <span id="size-value">size-auto</span></label>
-                  <select id="size-control"
-                    class="mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                    <option value="size-auto" selected>auto</option>
-                    <option value="size-24">24 (6rem)</option>
-                    <option value="size-32">32 (8rem)</option>
-                    <option value="size-48">48 (12rem)</option>
+                  <label for="radius-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Border
+                  Radius</label>
+                  <select id="radius-control" class="card-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                    <option value="rounded-none">none</option>
+                    <option value="rounded-lg" selected>lg</option>
+                    <option value="rounded-2xl">2xl</option>
+                    <option value="rounded-full">full</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="shadow-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Box
+                  Shadow</label>
+                  <select id="shadow-control" class="card-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                    <option value="shadow-none">none</option>
+                    <option value="shadow">md</option>
+                    <option value="shadow-lg" selected>lg</option>
+                    <option value="shadow-2xl">2xl</option>
                   </select>
                 </div>
               </div>
-              <div
-                class="md:col-span-2 flex items-center justify-center bg-slate-100 dark:bg-slate-900 rounded-lg min-h-[20rem]">
-                <div id="sizing-viz"
-                  class="bg-sky-500 rounded-lg flex items-center justify-center transition-all duration-200 w-48 h-32">
-                  <p id="sizing-output" class="text-white font-mono text-sm p-2 text-center"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Centering Playground</h3>
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-            <div class="flex justify-center gap-4 mb-6">
-              <button data-method="mx-auto"
-                class="centering-btn control-btn px-3 py-2 text-sm rounded-md bg-slate-200 dark:bg-slate-700 active">Horizontal
-                (mx-auto)</button>
-              <button data-method="absolute"
-                class="centering-btn control-btn px-3 py-2 text-sm rounded-md bg-slate-200 dark:bg-slate-700">Absolute
-                Center</button>
-            </div>
-            <div id="centering-viz-container" class="relative h-64 bg-slate-100 dark:bg-slate-900 rounded-lg">
-              <div id="centering-viz"
-                class="w-32 h-32 bg-sky-500 rounded-lg flex items-center justify-center text-white font-bold mx-auto">
-                Centered</div>
-            </div>
-            <div
-              class="mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
-              <p id="centering-output" class="whitespace-nowrap"></p>
-            </div>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Interactive Box Model</h3>
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-              <div id="box-model-controls" class="flex flex-wrap gap-4 justify-center mb-6">
-                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" data-class="p-8"
-                    class="box-model-toggle rounded text-sky-600 focus:ring-sky-500"><span>Padding</span></label>
-                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" data-class="border-8"
-                    class="box-model-toggle rounded text-sky-600 focus:ring-sky-500"><span>Border</span></label>
-              </div>
-              <div id="box-model-viz"
-                class="w-48 h-48 bg-sky-500/20 border-sky-500 mx-auto transition-all duration-300 relative flex items-center justify-center">
-                <div id="box-model-content"
-                  class="bg-sky-500 text-white flex items-center justify-center text-sm font-mono transition-all duration-300">
-                  Content</div>
-              </div>
-              <div id="box-model-output"
-                class="text-center font-mono text-sm mt-4 text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 rounded p-2">
-              </div>
-              <p class="text-center text-xs text-slate-500 mt-2">Using <code>box-border</code> (Tailwind's default),
-                padding and borders are included *inside* the element's specified dimensions.</p>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Flexbox Playground</h3>
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-              <div id="flexbox-controls" class="mb-4 space-y-3">
+              <div class="space-y-4 border-b border-slate-200 dark:border-slate-700 pb-6">
+                <h4 class="text-sm font-medium text-slate-500 dark:text-slate-400">Title Styles</h4>
                 <div>
-                  <p class="text-sm font-medium mb-2">Justify Content (Main Axis)</p>
-                  <div class="flex flex-wrap gap-2">
-                    <button data-group="justify" data-class="justify-start"
-                      class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">justify-start</button>
-                    <button data-group="justify" data-class="justify-center"
-                      class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">justify-center</button>
-                    <button data-group="justify" data-class="justify-end"
-                      class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">justify-end</button>
-                    <button data-group="justify" data-class="justify-between"
-                      class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">justify-between</button>
-                  </div>
+                  <label for="title-color-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Title Color</label>
+                  <select id="title-color-control" class="title-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                    <option value="text-slate-900" selected>slate-900</option>
+                    <option value="text-white">white</option>
+                    <option value="text-sky-800">sky-800</option>
+                    <option value="text-indigo-800">indigo-800</option>
+                  </select>
                 </div>
                 <div>
-                  <p class="text-sm font-medium mb-2">Align Items (Cross Axis)</p>
-                  <div class="flex flex-wrap gap-2">
-                    <button data-group="items" data-class="items-start"
-                      class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">items-start</button>
-                    <button data-group="items" data-class="items-center"
-                      class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">items-center</button>
-                    <button data-group="items" data-class="items-end"
-                      class="flex-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">items-end</button>
-                  </div>
+                  <label for="title-weight-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Title Weight</label>
+                  <select id="title-weight-control" class="title-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                    <option value="font-normal">Normal</option>
+                    <option value="font-bold" selected>Bold</option>
+                  </select>
                 </div>
-              </div>
-              <div id="flexbox-viz"
-                class="h-40 bg-slate-100 dark:bg-slate-700 rounded p-2 flex justify-start items-start transition-all duration-300">
-                <div class="w-10 h-10 bg-sky-500 rounded flex items-center justify-center text-white font-bold">1</div>
-                <div class="w-10 h-16 bg-sky-600 rounded flex items-center justify-center text-white font-bold">2</div>
-                <div class="w-10 h-12 bg-sky-700 rounded flex items-center justify-center text-white font-bold">3</div>
-              </div>
-              <p id="flexbox-output" class="text-center font-mono text-sm mt-4 text-slate-600 dark:text-slate-400">.flex
-                .justify-start .items-start</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Grid Playground</h3>
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-            <div id="grid-controls" class="mb-4 space-y-3">
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                  <p class="text-sm font-medium mb-2">Columns</p>
-                  <div class="flex flex-wrap gap-2">
-                    <button data-group="cols" data-class="grid-cols-2"
-                      class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">2</button>
-                    <button data-group="cols" data-class="grid-cols-3"
-                      class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">3</button>
-                    <button data-group="cols" data-class="grid-cols-4"
-                      class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">4</button>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-sm font-medium mb-2">Gap</p>
-                  <div class="flex flex-wrap gap-2">
-                    <button data-group="gap" data-class="gap-2"
-                      class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">2</button>
-                    <button data-group="gap" data-class="gap-4"
-                      class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">4</button>
-                    <button data-group="gap" data-class="gap-8"
-                      class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">8</button>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-sm font-medium mb-2">Item 1 Column Span</p>
-                  <div class="flex flex-wrap gap-2">
-                    <button data-group="span" data-class="col-span-1"
-                      class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">1</button>
-                    <button data-group="span" data-class="col-span-2"
-                      class="grid-control-btn control-btn px-2 py-1 text-xs rounded bg-slate-200 dark:bg-slate-700">2</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="grid-viz"
-              class="min-h-[10rem] bg-slate-100 dark:bg-slate-700 rounded p-2 grid grid-cols-3 gap-4 transition-all duration-300">
-              <div id="grid-item-1"
-                class="h-16 bg-sky-500 rounded flex items-center justify-center text-white font-bold transition-all duration-300 col-span-1">
-                1</div>
-              <div class="h-16 bg-sky-600 rounded flex items-center justify-center text-white font-bold">2</div>
-              <div class="h-16 bg-sky-700 rounded flex items-center justify-center text-white font-bold">3</div>
-              <div class="h-16 bg-sky-600 rounded flex items-center justify-center text-white font-bold">4</div>
-              <div class="h-16 bg-sky-700 rounded flex items-center justify-center text-white font-bold">5</div>
-            </div>
-            <p id="grid-output" class="text-center font-mono text-sm mt-4 text-slate-600 dark:text-slate-400">Container:
-              .grid .grid-cols-3 .gap-4 | Item 1: .col-span-1</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="playground" class="tab-content">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-1 bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg space-y-6">
-          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Customize Component</h3>
-
-          <div class="space-y-4 border-b border-slate-200 dark:border-slate-700 pb-6">
-            <h4 class="text-sm font-medium text-slate-500 dark:text-slate-400">Card Styles</h4>
-            <div>
-              <label for="padding-control"
-                class="block text-sm font-medium text-slate-700 dark:text-slate-300">Padding</label>
-              <select id="padding-control"
-                class="card-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                <option value="p-2">p-2</option>
-                <option value="p-4">p-4</option>
-                <option value="p-6" selected>p-6</option>
-                <option value="p-8">p-8</option>
-                <option value="p-12">p-12</option>
-              </select>
-            </div>
-            <div>
-              <label for="bg-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Background
-                Color</label>
-              <select id="bg-control"
-                class="card-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                <option value="bg-white" selected>white</option>
-                <option value="bg-slate-200">slate-200</option>
-                <option value="bg-sky-500">sky-500</option>
-                <option value="bg-indigo-500">indigo-500</option>
-              </select>
-            </div>
-            <div>
-              <label for="radius-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Border
-                Radius</label>
-              <select id="radius-control"
-                class="card-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                <option value="rounded-none">none</option>
-                <option value="rounded-lg" selected>lg</option>
-                <option value="rounded-2xl">2xl</option>
-                <option value="rounded-full">full</option>
-              </select>
-            </div>
-            <div>
-              <label for="shadow-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Box
-                Shadow</label>
-              <select id="shadow-control"
-                class="card-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                <option value="shadow-none">none</option>
-                <option value="shadow">md</option>
-                <option value="shadow-lg" selected>lg</option>
-                <option value="shadow-2xl">2xl</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="space-y-4 border-b border-slate-200 dark:border-slate-700 pb-6">
-            <h4 class="text-sm font-medium text-slate-500 dark:text-slate-400">Title Styles</h4>
-            <div>
-              <label for="title-color-control"
-                class="block text-sm font-medium text-slate-700 dark:text-slate-300">Title Color</label>
-              <select id="title-color-control"
-                class="title-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                <option value="text-slate-900" selected>slate-900</option>
-                <option value="text-white">white</option>
-                <option value="text-sky-800">sky-800</option>
-                <option value="text-indigo-800">indigo-800</option>
-              </select>
-            </div>
-            <div>
-              <label for="title-weight-control"
-                class="block text-sm font-medium text-slate-700 dark:text-slate-300">Title Weight</label>
-              <select id="title-weight-control"
-                class="title-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                <option value="font-normal">Normal</option>
-                <option value="font-bold" selected>Bold</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <h4 class="text-sm font-medium text-slate-500 dark:text-slate-400">Body Text Styles</h4>
-            <div>
-              <label for="text-color-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Body
-                Text Color</label>
-              <select id="text-color-control"
-                class="text-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                <option value="text-slate-600" selected>slate-600</option>
-                <option value="text-white">white</option>
-                <option value="text-gray-400">gray-400</option>
-                <option value="text-rose-950">rose-950</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="lg:col-span-2">
-          <div class="h-full flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-900 rounded-lg p-8">
-            <div id="playground-viz" class="p-6 bg-white rounded-lg shadow-lg transition-all duration-300">
-              <h2 id="playground-title" class="text-2xl text-slate-900 font-bold">Interactive Card</h2>
-              <p id="playground-text" class="mt-2 text-slate-600">Use the controls to change my appearance!</p>
-            </div>
-            <div
-              class="mt-8 w-full bg-slate-900 dark:bg-black/50 rounded-lg p-4 text-white font-mono text-sm overflow-x-auto">
-              <pre id="playground-output" class="whitespace-pre"></pre>
-            </div>
-            <p class="text-center text-xs text-slate-500 mt-2">The classes above are being applied to the component in
-              real-time.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="effects" class="tab-content">
-      <div class="space-y-12">
-        <div>
-          <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Animation on a Path</h3>
-          <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
-            <div class="flex items-center justify-center h-48 relative">
-              <svg width="200" height="120" class="absolute inset-0 m-auto">
-                <path d="M20,100 C40,20 80,20 100,100 S160,180 180,100" stroke="currentColor" fill="transparent"
-                  class="text-slate-300 dark:text-slate-700" stroke-dasharray="4" />
-              </svg>
-              <div id="path-animation-container">
-                <div class="w-8 h-8 bg-sky-500 rounded-full animate-move-on-path"></div>
-              </div>
-            </div>
-            <div
-              class="mt-8 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
-              <p class="font-bold">Tailwind Config (tailwind.config.js):</p>
-              <pre class="whitespace-pre-wrap"><code>theme: {
-  extend: {
-    keyframes: {
-      'move-on-path': {
-        '0%': { offsetDistance: '0%' },
-        '100%': { offsetDistance: '100%' },
-      },
-    },
-    animation: {
-      'move-on-path': 'move-on-path 5s linear infinite',
-    },
-  },
-},</code></pre>
-              <p class="font-bold mt-4">Custom CSS:</p>
-              <pre><code>#path-animation-container {
-  offset-path: path("M20,100 C40,20 80,20 100,100 S160,180 180,100");
-}</code></pre>
-              <p class="font-bold mt-4">HTML:</p>
-              <pre><code>&lt;div class="w-8 h-8 bg-sky-500 rounded-full animate-move-on-path"&gt;&lt;/div&gt;</code></pre>
-            </div>
-            <p class="text-center text-xs text-slate-500 mt-2">This advanced effect combines custom CSS for
-              `offset-path` with Tailwind's animation and keyframe utilities.</p>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Transitions & Transforms</h3>
-          <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
-            <div class="flex items-center justify-center h-48">
-              <div id="transform-viz"
-                class="w-32 h-32 bg-sky-500 rounded-lg flex items-center justify-center text-white font-bold transition duration-300 ease-in-out hover:scale-125 hover:rotate-12 hover:bg-indigo-500">
-                Hover Me
-              </div>
-            </div>
-            <div
-              class="mt-8 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
-              <p class="whitespace-nowrap">.transition .duration-300 .ease-in-out .hover:scale-125 .hover:rotate-12
-                .hover:bg-indigo-500</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Filters</h3>
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-              <div>
-                <img id="filter-viz" src="https://placehold.co/600x400/0ea5e9/ffffff?text=Filter+Me"
-                  alt="Placeholder image for filter demo" class="rounded-lg transition-all duration-300 w-full h-auto">
               </div>
               <div class="space-y-4">
-                <h4 class="font-semibold">Toggle Filters</h4>
-                <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" data-class="blur-sm"
-                    class="filter-toggle rounded text-sky-600 focus:ring-sky-500"><span>Blur</span></label>
-                <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" data-class="grayscale"
-                    class="filter-toggle rounded text-sky-600 focus:ring-sky-500"><span>Grayscale</span></label>
-                <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" data-class="sepia"
-                    class="filter-toggle rounded text-sky-600 focus:ring-sky-500"><span>Sepia</span></label>
-                <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox"
-                    data-class="brightness-75"
-                    class="filter-toggle rounded text-sky-600 focus:ring-sky-500"><span>Dim</span></label>
-              </div>
-            </div>
-            <div
-              class="mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
-              <p id="filter-output" class="whitespace-nowrap">.transition</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Gradients</h3>
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-            <div id="gradient-viz"
-              class="h-40 w-full rounded-lg bg-gradient-to-r from-sky-500 to-indigo-500 transition-all duration-300">
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-              <div>
-                <label for="from-control"
-                  class="block text-sm font-medium text-slate-700 dark:text-slate-300">From</label>
-                <select id="from-control"
-                  class="gradient-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                  <option value="from-sky-500" selected>Sky</option>
-                  <option value="from-emerald-500">Emerald</option>
-                  <option value="from-rose-500">Rose</option>
-                  <option value="from-amber-500">Amber</option>
-                </select>
-              </div>
-              <div>
-                <label for="via-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Via
-                  (Optional)</label>
-                <select id="via-control"
-                  class="gradient-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                  <option value="">None</option>
-                  <option value="via-indigo-500" selected>Indigo</option>
-                  <option value="via-cyan-500">Cyan</option>
-                  <option value="via-purple-500">Purple</option>
-                </select>
-              </div>
-              <div>
-                <label for="to-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">To</label>
-                <select id="to-control"
-                  class="gradient-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
-                  <option value="to-indigo-500" selected>Indigo</option>
-                  <option value="to-teal-500">Teal</option>
-                  <option value="to-fuchsia-500">Fuchsia</option>
-                  <option value="to-red-500">Red</option>
-                </select>
-              </div>
-            </div>
-            <div
-              class="mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
-              <p id="gradient-output" class="whitespace-nowrap"></p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Built-in Animations</h3>
-          <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div class="w-12 h-12 mx-auto bg-sky-500 rounded-full flex items-center justify-center animate-spin">
+                <h4 class="text-sm font-medium text-slate-500 dark:text-slate-400">Body Text Styles</h4>
+                <div>
+                  <label for="text-color-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Body Text Color</label>
+                  <select id="text-color-control" class="text-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                    <option value="text-slate-600" selected>slate-600</option>
+                    <option value="text-white">white</option>
+                    <option value="text-gray-400">gray-400</option>
+                    <option value="text-rose-950">rose-950</option>
+                  </select>
                 </div>
-                <p class="mt-2 text-sm font-mono">.animate-spin</p>
               </div>
-              <div>
-                <span class="relative flex h-12 w-12 mx-auto">
-                  <span
-                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-12 w-12 bg-sky-500"></span>
-                </span>
-                <p class="mt-2 text-sm font-mono">.animate-ping</p>
-              </div>
-              <div>
-                <div class="w-12 h-12 mx-auto bg-sky-500 rounded-full animate-pulse"></div>
-                <p class="mt-2 text-sm font-mono">.animate-pulse</p>
-              </div>
-              <div>
-                <div class="w-12 h-12 mx-auto bg-sky-500 rounded-full animate-bounce"></div>
-                <p class="mt-2 text-sm font-mono">.animate-bounce</p>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="h-full flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-900 rounded-lg p-8">
+                <div id="playground-viz" class="p-6 bg-white rounded-lg shadow-lg transition-all duration-300">
+                  <h2 id="playground-title" class="text-2xl text-slate-900 font-bold">Interactive Card</h2>
+                  <p id="playground-text" class="mt-2 text-slate-600">Use the controls to change my appearance!</p>
+                </div>
+                <div class="mt-8 w-full bg-slate-900 dark:bg-black/50 rounded-lg p-4 text-white font-mono text-sm overflow-x-auto">
+                  <pre id="playground-output" class="whitespace-pre"></pre>
+                </div>
+                <p class="text-center text-xs text-slate-500 mt-2">The classes above are being applied to the component in
+                real-time.</p>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="other-classes" class="tab-content">
-      <article class="prose dark:prose-invert mx-auto max-w-3xl">
-        <h2>Other Notable Classes</h2>
-        <p>This tutorial covers the most common utility classes, but Tailwind's comprehensive library offers much more.
-          Below are links to the official documentation for other important categories.</p>
-        <dl>
-          <dt>Borders</dt>
-          <dd>Utilities for controlling element borders, including color, style, and width between elements.
-            <a href="https://tailwindcss.com/docs/border-color" target="_blank" rel="noopener noreferrer"
-              class="block text-sky-600 dark:text-sky-400 hover:underline">View Border Docs &rarr;</a>
-          </dd>
-          <dt>Interactivity</dt>
-          <dd>Utilities for controlling user interaction, such as cursor type, user selection, and pointer events.
-            <a href="https://tailwindcss.com/docs/cursor" target="_blank" rel="noopener noreferrer"
-              class="block text-sky-600 dark:text-sky-400 hover:underline">View Interactivity Docs &rarr;</a>
-          </dd>
-          <dt>Tables</dt>
-          <dd>Utilities for styling tables, including border collapse, table layout, and caption side.
-            <a href="https://tailwindcss.com/docs/table-layout" target="_blank" rel="noopener noreferrer"
-              class="block text-sky-600 dark:text-sky-400 hover:underline">View Table Docs &rarr;</a>
-          </dd>
-          <dt>Accessibility</dt>
-          <dd>Utilities for improving accessibility, such as screen reader visibility classes.
-            <a href="https://tailwindcss.com/docs/screen-readers" target="_blank" rel="noopener noreferrer"
-              class="block text-sky-600 dark:text-sky-400 hover:underline">View Accessibility Docs &rarr;</a>
-          </dd>
-        </dl>
-      </article>
-    </section>
-
-  </main>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
+        </section>
+        <section id="effects" class="tab-content">
+          <div class="space-y-12">
+            <div>
+              <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Animation on a Path</h3>
+              <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
+                <div class="flex items-center justify-center h-48 relative">
+                  <svg width="200" height="120" class="absolute inset-0 m-auto">
+                    <path d="M20,100 C40,20 80,20 100,100 S160,180 180,100" stroke="currentColor" fill="transparent" class="text-slate-300 dark:text-slate-700" stroke-dasharray="4"/>
+                  </svg>
+                  <div id="path-animation-container">
+                    <div class="w-8 h-8 bg-sky-500 rounded-full animate-move-on-path"></div>
+                  </div>
+                </div>
+                <div class="mt-8 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
+                  <p class="font-bold">Tailwind Config (tailwind.config.js):</p>
+                  <pre class="whitespace-pre-wrap"><code>theme: {
+      extend: {
+        keyframes: {
+          'move-on-path': {
+            '0%': { offsetDistance: '0%' },
+            '100%': { offsetDistance: '100%' },
+          },
+        },
+        animation: {
+          'move-on-path': 'move-on-path 5s linear infinite',
+        },
+      },
+    },</code></pre>
+                  <p class="font-bold mt-4">Custom CSS:</p>
+                  <pre><code>#path-animation-container {
+      offset-path: path("M20,100 C40,20 80,20 100,100 S160,180 180,100");
+    }</code></pre>
+                  <p class="font-bold mt-4">HTML:</p>
+                  <pre><code>&lt;div class="w-8 h-8 bg-sky-500 rounded-full animate-move-on-path"&gt;&lt;/div&gt;</code></pre>
+                </div>
+                <p class="text-center text-xs text-slate-500 mt-2">This advanced effect combines custom CSS for
+                `offset-path` with Tailwind's animation and keyframe utilities.</p>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Transitions & Transforms</h3>
+              <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
+                <div class="flex items-center justify-center h-48">
+                  <div id="transform-viz" class="w-32 h-32 bg-sky-500 rounded-lg flex items-center justify-center text-white font-bold transition duration-300 ease-in-out hover:scale-125 hover:rotate-12 hover:bg-indigo-500">
+                    Hover Me
+                  </div>
+                </div>
+                <div class="mt-8 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
+                  <p class="whitespace-nowrap">.transition .duration-300 .ease-in-out .hover:scale-125 .hover:rotate-12
+                  .hover:bg-indigo-500</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Filters</h3>
+              <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                  <div>
+                    <img id="filter-viz" src="https://placehold.co/600x400/0ea5e9/ffffff?text=Filter+Me" alt="Placeholder image for filter demo" class="rounded-lg transition-all duration-300 w-full h-auto">
+                  </div>
+                  <div class="space-y-4">
+                    <h4 class="font-semibold">Toggle Filters</h4>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" data-class="blur-sm" class="filter-toggle rounded text-sky-600 focus:ring-sky-500"><span>Blur</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" data-class="grayscale" class="filter-toggle rounded text-sky-600 focus:ring-sky-500"><span>Grayscale</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" data-class="sepia" class="filter-toggle rounded text-sky-600 focus:ring-sky-500"><span>Sepia</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" data-class="brightness-75" class="filter-toggle rounded text-sky-600 focus:ring-sky-500"><span>Dim</span></label>
+                  </div>
+                </div>
+                <div class="mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
+                  <p id="filter-output" class="whitespace-nowrap">.transition</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Gradients</h3>
+              <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+                <div id="gradient-viz" class="h-40 w-full rounded-lg bg-gradient-to-r from-sky-500 to-indigo-500 transition-all duration-300">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                  <div>
+                    <label for="from-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">From</label>
+                    <select id="from-control" class="gradient-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                      <option value="from-sky-500" selected>Sky</option>
+                      <option value="from-emerald-500">Emerald</option>
+                      <option value="from-rose-500">Rose</option>
+                      <option value="from-amber-500">Amber</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="via-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Via
+                    (Optional)</label>
+                    <select id="via-control" class="gradient-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                      <option value="">None</option>
+                      <option value="via-indigo-500" selected>Indigo</option>
+                      <option value="via-cyan-500">Cyan</option>
+                      <option value="via-purple-500">Purple</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="to-control" class="block text-sm font-medium text-slate-700 dark:text-slate-300">To</label>
+                    <select id="to-control" class="gradient-control mt-1 block w-full rounded-md border-slate-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm">
+                      <option value="to-indigo-500" selected>Indigo</option>
+                      <option value="to-teal-500">Teal</option>
+                      <option value="to-fuchsia-500">Fuchsia</option>
+                      <option value="to-red-500">Red</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-lg p-4 text-slate-800 dark:text-slate-200 font-mono text-sm overflow-x-auto">
+                  <p id="gradient-output" class="whitespace-nowrap"></p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Built-in Animations</h3>
+              <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                  <div>
+                    <div class="w-12 h-12 mx-auto bg-sky-500 rounded-full flex items-center justify-center animate-spin">
+                    </div>
+                    <p class="mt-2 text-sm font-mono">.animate-spin</p>
+                  </div>
+                  <div>
+                    <span class="relative flex h-12 w-12 mx-auto">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-12 w-12 bg-sky-500"></span>
+                    </span>
+                    <p class="mt-2 text-sm font-mono">.animate-ping</p>
+                  </div>
+                  <div>
+                    <div class="w-12 h-12 mx-auto bg-sky-500 rounded-full animate-pulse"></div>
+                    <p class="mt-2 text-sm font-mono">.animate-pulse</p>
+                  </div>
+                  <div>
+                    <div class="w-12 h-12 mx-auto bg-sky-500 rounded-full animate-bounce"></div>
+                    <p class="mt-2 text-sm font-mono">.animate-bounce</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="other-classes" class="tab-content">
+          <article class="prose dark:prose-invert mx-auto max-w-3xl">
+            <h2>Other Notable Classes</h2>
+            <p>This tutorial covers the most common utility classes, but Tailwind's comprehensive library offers much
+            more. Below are links to the official documentation for other important categories.</p>
+            <dl>
+              <dt>Borders</dt>
+              <dd>Utilities for controlling element borders, including color, style, and width between elements.
+                <a href="https://tailwindcss.com/docs/border-color" target="_blank" rel="noopener noreferrer" class="block text-sky-600 dark:text-sky-400 hover:underline">View Border Docs &rarr;</a></dd>
+              <dt>Interactivity</dt>
+              <dd>Utilities for controlling user interaction, such as cursor type, user selection, and pointer events.
+                <a href="https://tailwindcss.com/docs/cursor" target="_blank" rel="noopener noreferrer" class="block text-sky-600 dark:text-sky-400 hover:underline">View Interactivity Docs &rarr;</a></dd>
+              <dt>Tables</dt>
+              <dd>Utilities for styling tables, including border collapse, table layout, and caption side.
+                <a href="https://tailwindcss.com/docs/table-layout" target="_blank" rel="noopener noreferrer" class="block text-sky-600 dark:text-sky-400 hover:underline">View Table Docs &rarr;</a></dd>
+              <dt>Accessibility</dt>
+              <dd>Utilities for improving accessibility, such as screen reader visibility classes.
+                <a href="https://tailwindcss.com/docs/screen-readers" target="_blank" rel="noopener noreferrer" class="block text-sky-600 dark:text-sky-400 hover:underline">View Accessibility Docs &rarr;</a></dd>
+            </dl>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
       let jitChartInstance;
       const tabs = document.querySelectorAll('.tab-button');
       const mobileNav = document.getElementById('mobile-nav');
@@ -927,7 +854,6 @@
       gradientControls.forEach(control => control.addEventListener('change', updateGradient));
       updateGradient();
     });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
